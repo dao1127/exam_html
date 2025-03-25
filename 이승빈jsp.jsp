@@ -27,23 +27,22 @@
 
 <%
     // 데이터베이스 접속 정보
-    String url = "jdbc:oracle:thin:@localhost:1521:xe"; // XE 또는 DB 환경에 맞게 수정
-    String user = "scott"; // SCOTT 계정
-    String password = "tiger"; // SCOTT 계정 비밀번호
+    String url = "jdbc:oracle:thin:@localhost:1521:xe"; 
+    String user = "scott"; 
+    String password = "tiger"; 
 
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
 
     try {
-        // JDBC 드라이버 로드
+        
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
-        // 데이터베이스 연결
+        
         conn = DriverManager.getConnection(url, user, password);
         stmt = conn.createStatement();
 
-        // SQL 실행
         String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO FROM EMP";
         rs = stmt.executeQuery(sql);
 %>
@@ -78,7 +77,7 @@
     } catch (Exception e) {
         e.printStackTrace();
     } finally {
-        // 리소스 해제
+      
         if (rs != null) try { rs.close(); } catch (SQLException e) { e.printStackTrace(); }
         if (stmt != null) try { stmt.close(); } catch (SQLException e) { e.printStackTrace(); }
         if (conn != null) try { conn.close(); } catch (SQLException e) { e.printStackTrace(); }
